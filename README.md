@@ -1,26 +1,22 @@
 The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
 
-(__TODO__: your project name_)
-
-# Shoppy Shoperson 
+<!-- ![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title") -->
+# Genshin Impact Daily Info
 
 ## Overview
 
-(__TODO__: a brief one or two paragraph, high-level description of your project_)
+In the game Genshin Impact, there are available areas in the game that are only available on certain days. Checking for which of these areas are available on what days can get tedious, as every character and weapon need different materials, and you may end up forgetting what each one needs. The goal of this site is to eliminate the need to memorize what days and what materials are needed for you to level up your characters and weapons.
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
-
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
-
+Genshin Impact Daily Info is a web app that will allow users to view what materials are available on a given day (the current day, by default). Registered users can also indicate which characters and weapons they want to focus on, so those will appear clearly on the page.
 
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other_) 
+The application will store Users, Characters, Weapons, Materials, and Domains
 
-The application will store Users, Lists and Items
-
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
+* each list will store information about a single character or weapon
+* users can have multiple characters and weapons (via references)
+* characters and weapons contain materials (via references)
+* materials contain domains (via references)
 
 (__TODO__: sample documents_)
 
@@ -28,23 +24,69 @@ An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
+  username: // a user's username,
   hash: // a password hash,
-  lists: // an array of references to List documents
+  characters: // an array of references to documents containing the character info
+  weapons: // an array of references to documents containing the weapon info
 }
 ```
 
-An Example List with Embedded Items:
+An Example Character document:
 
 ```javascript
 {
-  user: // a reference to a User object
-  name: "Breakfast foods",
-  items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
-  createdAt: // timestamp
+  name: "Beidou",
+  region: "Liyue",
+  vision: "Electro",
+  talent-material: {name: "Gold", 
+                    days_of_week: "We/Sa",
+                    domain: {name: "Taishan Mansion",
+                             region: "Liyue"} 
+                   }
+  weekly-material: {name: "Dvalin's Sign", 
+                    domain: {name: "Stormterror's Lair"
+                             region: "Mondstadt", 
+                             weekly_boss: "Dvalin"}
+                   } 
+}
+```
+
+An Example Weapon document:
+
+```javascript
+{
+  name: "Sacrificial Greatsword",
+  class: "Claymore",
+  rarity: 4,
+  stats: {base_atk: "565", 
+          second_stat: "Energy Recharge", 
+          second_stat_number: "30.6%"},
+  ascension_material : {name: "Boreal Wolf Teeth",
+                        days_of_week: "Tu/Fr",
+                        domain: {name: "Cecilia Garden",
+                                 region: "Liyue"}
+                       }
+}
+```
+
+An Example Material document:
+
+```javascript
+{
+  name: "Boreal Wolf Teeth",
+  days_of_week: "Tu/Fr",
+  domain: {name: "Cecilia Garden",
+          region: "Liyue"}
+}
+```
+
+An Example Domain document:
+
+```javascript
+{
+  name: "Stormterror's Lair"
+  region: "Mondstadt", 
+  weekly_boss: "Dvalin"
 }
 ```
 
