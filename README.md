@@ -132,41 +132,32 @@ An Example Domain document:
 
 ## User Stories or Use Cases
 
-(__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://www.mongodb.com/download-center?jmp=docs&_ga=1.47552679.1838903181.1489282706#previous)_)
-
-1. as non-registered user, I can register a new account with the site
-2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+1. as a non-registered user, I can register a new account with the site
+2. as a non-registered user, I can view the available talent and weapon level up material for any given day
+3. as a non-registered user, I can look up general information about characters, weapons, materials, and domains
+4. as a user, I can log in to the site
+5. as a user, I can mark characters and weapons to track, so that they show up first on the home page
+6. as a user, I can view all of my tracked characters and weapons
+7. as a user, I can add and remove weapons and characters to be tracked
 
 ## Research Topics
 
-(__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
-
 * (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+    * I'm going to be using `passport.js` for user authentication
+    * `passport` seems to be a relatively simple to use library, and should allow me to implement user authentication without too much trouble
+* (1 point) Get local time
+    * I will use the local time to show the default values on the home page
+    * It will automatically handle time zone differences
+    * Might be something already native to js
+* (2 points) Flexbox
+    * I am aiming to use flexbox to style my pages
+    * Flexbox is more flexible than native css stylings
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
+8 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 
 
-(__TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_)
-
 ## Annotations / References Used
 
-(__TODO__: list any tutorials/references/etc. that you've based your code off of_)
-
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
-
+1. [passport.js authentication docs](http://passportjs.org/docs) - [File where this was used](auth.js)
