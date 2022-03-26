@@ -1,5 +1,3 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
-
 <!-- ![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title") -->
 # Genshin Impact Daily Info
 
@@ -17,8 +15,6 @@ The application will store Users, Characters, Weapons, Materials, and Domains
 * users can have multiple characters and weapons (via references)
 * characters and weapons contain materials (via references)
 * materials contain domains (via references)
-
-(__TODO__: sample documents_)
 
 An Example User:
 
@@ -38,16 +34,8 @@ An Example Character document:
   name: "Beidou",
   region: "Liyue",
   vision: "Electro",
-  talent-material: {name: "Gold", 
-                    days_of_week: "We/Sa",
-                    domain: {name: "Taishan Mansion",
-                             region: "Liyue"} 
-                   }
-  weekly-material: {name: "Dvalin's Sign", 
-                    domain: {name: "Stormterror's Lair"
-                             region: "Mondstadt", 
-                             weekly_boss: "Dvalin"}
-                   } 
+  talent-material: "Gold",
+  weekly-material: "Dvalin's Sigh"
 }
 ```
 
@@ -61,11 +49,7 @@ An Example Weapon document:
   stats: {base_atk: "565", 
           second_stat: "Energy Recharge", 
           second_stat_number: "30.6%"},
-  ascension_material : {name: "Boreal Wolf Teeth",
-                        days_of_week: "Tu/Fr",
-                        domain: {name: "Cecilia Garden",
-                                 region: "Liyue"}
-                       }
+  ascension_material : "Boreal Wolf Teeth"
 }
 ```
 
@@ -75,8 +59,7 @@ An Example Material document:
 {
   name: "Boreal Wolf Teeth",
   days_of_week: "Tu/Fr",
-  domain: {name: "Cecilia Garden",
-          region: "Liyue"}
+  domain: "Cecilia Garden"
 }
 ```
 
@@ -92,8 +75,6 @@ An Example Domain document:
 
 
 ## [Link to Commented First Draft Schema](db.js) 
-
-(__TODO__: create a first draft of your Schemas in db.js and link to it_)
 
 ## Wireframes
 
@@ -113,9 +94,7 @@ An Example Domain document:
 
 ## Site map
 
-(__TODO__: draw out a site map that shows how pages are related to each other_)
-
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
+![Site Map](/documentation/AIT%20Final%20Project%20Sitemap.png?raw=true "Site Map")
 
 ## User Stories or Use Cases
 

@@ -39,7 +39,10 @@ const Domain = new mongoose.Schema({
 
 
 User.plugin(passportLocalMongoose);
-List.plugin(URLSlugs('name'));
+Character.plugin(URLSlugs('character'));
+Weapon.plugin(URLSlugs('weapon'));
+Material.plugin(URLSlugs('material'));
+Domain.plugin(URLSlugs('domain'));
 
 mongoose.model('User', User);
 mongoose.model('Character', Character);
@@ -47,4 +50,4 @@ mongoose.model('Weapon', Weapon);
 mongoose.model('Material', Material);
 mongoose.model('Domain', Domain);
 
-mongoose.connect(/* atlus url */));
+mongoose.connect(/* atlus url */);
