@@ -78,23 +78,57 @@ An Example Domain document:
 
 ## Wireframes
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
+/ - home page of site
 
-/list/create - page for creating a new shopping list
+![home page](documentation/wireframes/home.png)
 
-![list create](documentation/list-create.png)
+/ - home page of site if user is logged in
 
-/list - page for showing all shopping lists
+![home page with login](documentation/wireframes/home-with-login.png)
 
-![list](documentation/list.png)
+/user/login - login page
 
-/list/slug - page for showing specific shopping list
+![login page](documentation/wireframes/login.png)
 
-![list](documentation/list-slug.png)
+/user/register - registration page
+
+![registration page](documentation/wireframes/register.png)
+
+/characters - list of all characters
+
+![characters page](documentation/wireframes/characters.png)
+
+/characters/slug - information about a specific character
+
+![character page](documentation/wireframes/characters_slug.png)
+
+/weapons - list of all weapons
+
+![weapons page](documentation/wireframes/weapons.png)
+
+/weapons/slug - information about a specific weapon
+
+![weapon page](documentation/wireframes/weapons_slug.png)
+
+/materials - list of all materials
+
+![materials page](documentation/wireframes/materials.png)
+
+/materials/slug - information about a specific material
+
+![material page](documentation/wireframes/materials_slug.png)
+
+/domains - list of all domains
+
+![domains page](documentation/wireframes/domains.png)
+
+/domains/slug - information about a specific domain
+
+![domain page](documentation/wireframes/domains_slug.png)
 
 ## Site map
 
-![Site Map](/documentation/AIT%20Final%20Project%20Sitemap.png?raw=true "Site Map")
+![Site Map](/documentation/AIT%20Final%20Project%20Sitemap.png?raw=true)
 
 ## User Stories or Use Cases
 
