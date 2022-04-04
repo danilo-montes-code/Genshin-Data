@@ -1,3 +1,4 @@
+const uri = process.env.MONGODB_URI;
 const mongoose = require('mongoose'),
 URLSlugs = require('mongoose-url-slugs'),
 passportLocalMongoose = require('passport-local-mongoose');
@@ -50,4 +51,4 @@ mongoose.model('Weapon', Weapon);
 mongoose.model('Material', Material);
 mongoose.model('Domain', Domain);
 
-mongoose.connect(/* atlus url */);
+mongoose.connect(uri);
