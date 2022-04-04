@@ -1,4 +1,14 @@
 <!-- ![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title") -->
+<!-- 
+git add .
+git commit -m <message>
+
+GitHub
+git push
+
+Heroku
+git push heroku master
+-->
 # Genshin Impact Daily Info
 
 ## Overview
@@ -152,8 +162,10 @@ An Example Domain document:
 * (2 points) Flexbox
     * I am aiming to use flexbox to style my pages
     * Flexbox is more flexible than native css stylings
+* (3 points) MongoDB + Heroku Deployment
+    * I am using these to make my web app available outside of the class
 
-8 points total out of 8 required points
+11 points total out of 8 required points
 
 
 ## [Link to Initial Main Project File](app.js) 

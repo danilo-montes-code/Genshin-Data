@@ -1,10 +1,10 @@
+// requires
 require('./db');
 require('./auth');
-
+const uri = process.env.MONGODB_URI;
 const passport = require('passport');
 const express = require('express');
 const path = require('path');
-
 const app = express();
 
 // view engine setup
@@ -32,4 +32,5 @@ app.use((req, res, next) => {
   next();
 });
 
+// start server
 app.listen(3000);
