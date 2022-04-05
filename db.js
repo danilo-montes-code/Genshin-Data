@@ -1,13 +1,14 @@
-const uri = process.env.MONGODB_URI;
-const mongoose = require('mongoose'),
-URLSlugs = require('mongoose-url-slugs'),
-passportLocalMongoose = require('passport-local-mongoose');
+const uri = process.env.MONGODB_URI,
+      mongoose = require('mongoose'),
+      URLSlugs = require('mongoose-url-slugs'),
+      passportLocalMongoose = require('passport-local-mongoose');
 
 
 const User = new mongoose.Schema({
   // username, password
-  characters : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Character' }],
-  weapons    : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Weapon' }],
+  characters : [{type: mongoose.Schema.Types.ObjectId, ref: 'Character'}],
+  weapons    : [{type: mongoose.Schema.Types.ObjectId, ref: 'Weapon'}]
+  // poll_answers : [{type: String} : {type: mongoose.Schema.Types.ObjectId, ref: 'PollAnswer'}]
 });
 
 const Character = new mongoose.Schema({
@@ -36,6 +37,11 @@ const Domain = new mongoose.Schema({
   name         : {type: String, required: true},
   region       : {type: String, required: true},
   weekly_boss  : {type: String}
+});
+
+const PollAnswer = new mongoose.Schema({
+  answer  : {type: String, required: true},
+  pollee  : {type: String} // { type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true}
 });
 
 

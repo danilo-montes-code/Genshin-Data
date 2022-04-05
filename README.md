@@ -164,6 +164,8 @@ An Example Domain document:
     * Flexbox is more flexible than native css stylings
 * (3 points) MongoDB + Heroku Deployment
     * I am using these to make my web app available outside of the class
+* (1 point) mongoose-slugger-plugin
+    * Replacement for mongoose-url-slugs given vulnerability in dependency
 
 11 points total out of 8 required points
 
@@ -173,3 +175,4 @@ An Example Domain document:
 ## Annotations / References Used
 
 1. [passport.js authentication docs](http://passportjs.org/docs) - [File where this was used](auth.js)
+2. 

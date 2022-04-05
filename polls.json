@@ -1,0 +1,16 @@
+{
+    "poll_0" : {
+        "question" : "Who is your favorite Mondstadt character?",
+        "answers"  : [
+            "Albedo",
+            "Amber",
+            "Barbara",
+            "Bennet",
+            "Diluc",
+            "Diona",
+            "Eula",
+            "Fischl",
+            "Jean",
+        ]
+    }
+}
