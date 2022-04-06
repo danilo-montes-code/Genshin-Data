@@ -1,6 +1,7 @@
 <h2>Current Poll</h2>
 <h3>{{question}}</h3>
 <form method="POST" action="/poll">
+    <input type="hidden" name="question" value={{question}}>
     {{#each answerChoices}}
     <input type="radio" name="answer" value={{this}}>{{this}}</input><br>
     {{/each}}
@@ -8,3 +9,8 @@
 </form>
 
 <h3>Current Votes</h3>
+<ul class="no-bullets">
+    {{#each votes}}
+    <li>{{@key}}:{{this}}</li>
+    {{/each}}
+</ul>
