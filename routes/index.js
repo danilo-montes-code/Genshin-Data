@@ -27,9 +27,6 @@ router.get('/poll', (req, res) => {
 
     // get votes from db, only including answers
     const loggedAnswers = await PollAnswer.find({poll : CURRENT_POLL_INDEX});
-    console.log(loggedAnswers);
-    const all = await PollAnswer.find();
-    console.log(all);
 
     // init votes object
     let votes = currentPoll.answers.reduce((prev, answer) => {
