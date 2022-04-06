@@ -11,6 +11,52 @@
             "Eula",
             "Fischl",
             "Jean",
+            "Kaeya",
+            "Klee",
+            "Lisa",
+            "Mona",
+            "Noelle",
+            "Razor",
+            "Rosaria",
+            "Sucrose",
+            "Venti"
+        ]
+    },
+    "poll_1" : {
+        "question" : "Who is your favorite Liyue character?",
+        "answers"  : [
+            "Beidou",
+            "Chongyun",
+            "Ganyu",
+            "Hu Tao",
+            "Keqing",
+            "Ningguang",
+            "Qiqi",
+            "Shenhe",
+            "Xiangling",
+            "Xiao",
+            "Xingqiu",
+            "Xinyan",
+            "Yanfei",
+            "Yun Jin",
+            "Zhongli"
+        ]
+    },
+    "poll_2" : {
+        "question" : "Who is your favorite Inazuma character?",
+        "answers"  : [
+            "Arataki Itto",
+            "Gorou",
+            "Kaedehara Kazuha",
+            "Kamisato Ayaka",
+            "Kamisato Ayato",
+            "Kujou Sara",
+            "Raiden Shogun",
+            "Sangonomiya Kokomi",
+            "Sayu",
+            "Thoma",
+            "Yae Miko",
+            "Yoimiya"
         ]
     }
 }

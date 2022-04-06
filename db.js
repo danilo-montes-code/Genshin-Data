@@ -1,8 +1,9 @@
 const uri = process.env.MONGODB_URI,
       mongoose = require('mongoose'),
-      URLSlugs = require('mongoose-url-slugs'),
+      slug = require('mongoose-slug-generator'),
       passportLocalMongoose = require('passport-local-mongoose');
 
+mongoose.plugin(slug);
 
 const User = new mongoose.Schema({
   // username, password
@@ -17,6 +18,7 @@ const Character = new mongoose.Schema({
   vision          : {type: String, required: true},
   talent_material : {type: mongoose.Schema.Types.ObjectId, ref: 'Material', required: true},
   weekly_material : {type: mongoose.Schema.Types.ObjectId, ref: 'Material', required: true}
+  // slug: {type: String, slug: "name"}
 });
 
 const Weapon = new mongoose.Schema({
@@ -46,10 +48,6 @@ const PollAnswer = new mongoose.Schema({
 
 
 User.plugin(passportLocalMongoose);
-Character.plugin(URLSlugs('character'));
-Weapon.plugin(URLSlugs('weapon'));
-Material.plugin(URLSlugs('material'));
-Domain.plugin(URLSlugs('domain'));
 
 mongoose.model('User', User);
 mongoose.model('Character', Character);

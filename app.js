@@ -5,6 +5,7 @@ const passport = require('passport');
 const express = require('express');
 const path = require('path');
 const app = express();
+const baseRouter = require('./routes/index.js');
 
 // view engine setup
 app.set('view engine', 'hbs');
@@ -30,6 +31,9 @@ app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
 });
+
+// routes
+app.use(baseRouter);
 
 // start server
 app.listen(process.env.PORT || 3000);
