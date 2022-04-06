@@ -26,7 +26,7 @@ router.get('/poll', (req, res) => {
     currentPoll = data.polls[CURRENT_POLL_INDEX];
 
     // get votes from db, only including answers
-    const loggedAnswers = await PollAnswer.find({poll : currentPoll.question});
+    const loggedAnswers = await PollAnswer.find({poll : CURRENT_POLL_INDEX});
     console.log(loggedAnswers);
     const all = await PollAnswer.find();
     console.log(all);
@@ -58,7 +58,7 @@ router.post('/poll', async (req, res) => {
   const answer = body.answer;
 
   // find poll document
-  const poll = req.body.question;
+  const poll = CURRENT_POLL_INDEX;
   //const pollDoc = await Poll.find()
 
   // create poll response

@@ -45,11 +45,12 @@ const Domain = new mongoose.Schema({
 
 const Poll = new mongoose.Schema({
   question : {type: String, required: true},
-  answers  : [{type: mongoose.Schema.Types.ObjectId, ref: 'PollAnswer'}]
+  answers  : [{type: mongoose.Schema.Types.ObjectId, ref: 'PollAnswer'}],
+  pollNum  : {type: Number, required: true}
 });
 
 const PollAnswer = new mongoose.Schema({
-  poll    : {type: String, required: true}, // {type: mongoose.Schema.Types.ObjectId, ref: Poll, required: true},
+  poll    : {type: Number, required: true}, // {type: mongoose.Schema.Types.ObjectId, ref: Poll, required: true},
   answer  : {type: String, required: true},
   pollee  : {type: String} // { type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true}
 });
