@@ -2,19 +2,53 @@ const express = require('express'),
       router = express.Router(),
       passport = require('passport'),
       mongoose = require('mongoose'),
-      User = mongoose.model('User');
-
+      User = mongoose.model('User'),
+      PollAnswer = mongoose.model('PollAnswer'),
+      fs = require('fs');
+require('dotenv').config();
 
 router.get('/', (req, res) =>  {
   res.render('index');
 });
 
 router.get('/poll', (req, res) => {
-  res.render('poll');
+  fs.readFile('polls.json', (err, data) => {
+    if (err) {
+      console.log('Could not read polls file');
+      return;
+    }
+    
+    data = JSON.parse(data);
+    currentPoll = data.polls[0];
+
+
+    // get votes from db
+    
+
+    res.render('poll', {question: currentPoll.question,
+                        answerChoices: currentPoll.answers,
+                        // votes: votes
+                      });
+  });
 });
 
-router.post('/poll', (req, res) => {
+router.post('/poll', async (req, res) => {
+  // connect to db
+  await mongoose.connect(process.env.MONGODB_URI);
 
+  // parse poll response
+  const body = req.body;
+  const answer = body.answer;
+
+  // create poll response
+  const pollResp = new PollAnswer({
+    answer: answer
+  });
+
+  await pollResp.save();
+  mongoose.disconnect();
+
+  res.redirect('/poll');
 });
 
 // router.get('/logout', (req, res) => {

@@ -37,3 +37,4 @@ app.use(baseRouter);
 
 // start server
 app.listen(process.env.PORT || 3000);
+console.log('server started');

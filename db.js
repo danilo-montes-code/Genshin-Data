@@ -1,5 +1,4 @@
-const uri = process.env.MONGODB_URI,
-      mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
       slug = require('mongoose-slug-generator'),
       passportLocalMongoose = require('passport-local-mongoose');
 
@@ -41,6 +40,11 @@ const Domain = new mongoose.Schema({
   weekly_boss  : {type: String}
 });
 
+const Poll = new mongoose.Schema({
+  question : {type: String, required: true},
+  answers  : [{type: mongoose.Schema.Types.ObjectId, ref: 'PollAnswer'}]
+});
+
 const PollAnswer = new mongoose.Schema({
   answer  : {type: String, required: true},
   pollee  : {type: String} // { type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true}
@@ -54,5 +58,5 @@ mongoose.model('Character', Character);
 mongoose.model('Weapon', Weapon);
 mongoose.model('Material', Material);
 mongoose.model('Domain', Domain);
-
-mongoose.connect(uri);
+mongoose.model('Poll', Poll);
+mongoose.model('PollAnswer', PollAnswer);
