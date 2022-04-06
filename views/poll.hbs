@@ -3,7 +3,7 @@
 <form method="POST" action="/poll">
     <input type="hidden" name="question" value={{question}}>
     {{#each answerChoices}}
-    <input type="radio" name="answer" value={{this}}>{{this}}</input><br>
+    <input type="radio" name="answer" value={{this}} required>{{this}}</input><br>
     {{/each}}
     <input type="submit">
 </form>

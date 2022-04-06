@@ -8,12 +8,14 @@ const express = require('express'),
       fs = require('fs');
 require('dotenv').config();
 
+const CURRENT_POLL_INDEX = 0;
+
 router.get('/', (req, res) =>  {
   res.render('index');
 });
 
-router.get('/poll', async (req, res) => {
-  fs.readFile('polls.json', (err, data) => {
+router.get('/poll', (req, res) => {
+  fs.readFile('polls.json', async (err, data) => {
     if (err) {
       console.log('Could not read polls file');
       return;
@@ -21,15 +23,17 @@ router.get('/poll', async (req, res) => {
     await mongoose.connect(process.env.MONGODB_URI);
 
     data = JSON.parse(data);
-    currentPoll = data.polls[0];
+    currentPoll = data.polls[CURRENT_POLL_INDEX];
 
-    // get votes from db
-    let loggedAnswers = await PollAnswer.find({poll : currentPoll.question});
-    loggedAnswers = loggedAnswers.toArray();
+    // get votes from db, only including answers
+    const loggedAnswers = await PollAnswer.find({poll : currentPoll.question});
+    console.log(loggedAnswers);
+    const all = await PollAnswer.find();
+    console.log(all);
 
     // init votes object
     let votes = currentPoll.answers.reduce((prev, answer) => {
-      prev[answer] = 0;
+      return {...prev, [answer] : 0};
     }, {});
 
     // count up votes
