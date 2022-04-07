@@ -3,6 +3,7 @@ const mongoose = require('mongoose'),
       passportLocalMongoose = require('passport-local-mongoose');
 
 mongoose.plugin(slug);
+require('dotenv').config();
 
 const User = new mongoose.Schema({
   // username, password
@@ -65,3 +66,5 @@ mongoose.model('Material', Material);
 mongoose.model('Domain', Domain);
 mongoose.model('Poll', Poll);
 mongoose.model('PollAnswer', PollAnswer);
+
+mongoose.connect(process.env.MONGODB_URI);

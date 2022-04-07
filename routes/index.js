@@ -6,7 +6,7 @@ const express = require('express'),
       PollAnswer = mongoose.model('PollAnswer'),
       Poll = mongoose.model('Poll'),
       fs = require('fs');
-require('dotenv').config();
+
 
 const CURRENT_POLL_INDEX = 0;
 
@@ -20,7 +20,6 @@ router.get('/poll', (req, res) => {
       console.log('Could not read polls file');
       return;
     }
-    await mongoose.connect(process.env.MONGODB_URI);
 
     data = JSON.parse(data);
     currentPoll = data.polls[CURRENT_POLL_INDEX];
@@ -38,7 +37,7 @@ router.get('/poll', (req, res) => {
       votes[answer.answer] += 1;
     });
 
-    mongoose.disconnect();
+    // mongoose.disconnect();
     res.render('poll', {question: currentPoll.question,
                         answerChoices: currentPoll.answers,
                         votes: votes
