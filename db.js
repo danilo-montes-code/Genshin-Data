@@ -1,16 +1,14 @@
 const mongoose = require('mongoose'),
-      slug = require('mongoose-slug-generator'),
       passportLocalMongoose = require('passport-local-mongoose');
 
-mongoose.plugin(slug);
 require('dotenv').config();
 
-const User = new mongoose.Schema({
-  // username, password
-  characters : [{type: mongoose.Schema.Types.ObjectId, ref: 'Character'}],
-  weapons    : [{type: mongoose.Schema.Types.ObjectId, ref: 'Weapon'}]
-  // poll_answers : [{type: String} : {type: mongoose.Schema.Types.ObjectId, ref: 'PollAnswer'}]
-});
+// const User = new mongoose.Schema({
+//   // username, password
+//   characters : [{type: mongoose.Schema.Types.ObjectId, ref: 'Character'}],
+//   weapons    : [{type: mongoose.Schema.Types.ObjectId, ref: 'Weapon'}]
+//   // poll_answers : [{type: String} : {type: mongoose.Schema.Types.ObjectId, ref: 'PollAnswer'}]
+// });
 
 const Character = new mongoose.Schema({
   name            : {type: String, required: true},
@@ -57,9 +55,7 @@ const PollAnswer = new mongoose.Schema({
 });
 
 
-User.plugin(passportLocalMongoose);
-
-mongoose.model('User', User);
+// User.plugin(passportLocalMongoose);
 mongoose.model('Character', Character);
 mongoose.model('Weapon', Weapon);
 mongoose.model('Material', Material);
@@ -67,4 +63,11 @@ mongoose.model('Domain', Domain);
 mongoose.model('Poll', Poll);
 mongoose.model('PollAnswer', PollAnswer);
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI, 
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  },
+  (error) => {
+    if (error) console.log(error)
+});

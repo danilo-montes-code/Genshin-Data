@@ -174,5 +174,4 @@ An Example Domain document:
 
 ## Annotations / References Used
 
-1. [passport.js authentication docs](http://passportjs.org/docs) - [File where this was used](auth.js)
-2. 
+1. [passport.js Google Sign In Tutorial](https://www.saasbase.dev/building-an-authentication-system-using-passport-js-node-js-and-mongodb-part-1-google-login/) - [Files where this was used](\models)
