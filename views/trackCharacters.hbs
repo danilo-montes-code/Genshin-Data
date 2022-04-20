@@ -1,0 +1,7 @@
+<h2>Choose what characters to track!</h2>
+<form method="POST" action="/track-characters">
+    {{#each characters}}
+    <input type="checkbox" name="character" value="{{this}}">{{this}}</input><br>
+    {{/each}}
+    <input type="submit">
+</form>
