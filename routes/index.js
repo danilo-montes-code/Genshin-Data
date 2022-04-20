@@ -12,7 +12,7 @@ const CURRENT_POLL_INDEX = 0;
 router.get('/', async (req, res) =>  {
   // get characters if user is logged in
   let characters = [];
-  if (req.user.username) {
+  if (req.user?.username) {
     const user = await User.find({username: req.user.username}).exec();    
     characters = user[0].characters;
   }
