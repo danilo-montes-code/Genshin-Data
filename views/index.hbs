@@ -1,4 +1,21 @@
 <h2>Welcome!</h2>
 
+{{#if username}}
+You are logged as {{username}}
+{{/if}}
+
 <div><a href="/poll">Check out the poll!</a></div>
-<div><a href="/login">Login</a></div>
+<div><a href="/user/login">Login</a></div>
+<div><a href="/user/register">Register</a></div>
+
+{{#if username}}
+<div><a href="/track-characters">Track Characters</a></div>
+
+<div><h3>Currently Tracked Characters:</h3></div>
+<ul>
+    {{#each characters}}
+    <li>{{this}}</li>
+    {{/each}}
+</ul>
+{{/if}}
+

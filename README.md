@@ -177,4 +177,5 @@ An Example Domain document:
 
 ## Annotations / References Used
 
-1. [passport.js Google Sign In Tutorial](https://www.saasbase.dev/building-an-authentication-system-using-passport-js-node-js-and-mongodb-part-1-google-login/) - [Files where this was used](\models)
+1. [passport.js sign in tutorial](https://medium.com/swlh/set-up-an-express-js-app-with-passport-js-and-mongodb-for-password-authentication-6ea05d95335c) - still working on implementation
+2. [flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) - [used in css file](/public/stylesheets/style.css)

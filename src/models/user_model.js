@@ -1,17 +1,12 @@
 let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  id           : {type: String, unique: true},
-  firstName    : String,
-  lastName     : String,
-  profilePhoto : String,
-  password     : String,
-  source       : { type: String, required: [true, "source not specified"] },
+const userSchema = new mongoose.Schema({
+  username     : {type: String, required: true, unique: true},
+  password     : {type: String, required: true},
   lastVisited  : { type: Date, default: new Date() },
 
-  characters   : [{type: mongoose.Schema.Types.ObjectId, ref: 'Character'}],
-  weapons      : [{type: mongoose.Schema.Types.ObjectId, ref: 'Weapon'}]
+  characters   : [String], //[{type: mongoose.Schema.Types.ObjectId, ref: 'Character'}],
+  weapons      : [String] //[{type: mongoose.Schema.Types.ObjectId, ref: 'Weapon'}]
   // pollAnswers : [{type: String} : {type: mongoose.Schema.Types.ObjectId, ref: 'PollAnswer'}]
 });
 

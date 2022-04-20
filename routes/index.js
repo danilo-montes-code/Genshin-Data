@@ -1,15 +1,28 @@
 const express = require('express'), 
       router = express.Router(),
-      passport = require('passport'),
+      //passport = require('passport'),
       mongoose = require('mongoose'),
-      PollAnswer = mongoose.model('PollAnswer'),
+      User = require('../src/models/user_model')
+      PollAnswer = require('../src/models/pollAnswer_model'),
       fs = require('fs');
 
 
 const CURRENT_POLL_INDEX = 0;
 
-router.get('/', (req, res) =>  {
-  res.render('index');
+router.get('/', async (req, res) =>  {
+  // get characters if user is logged in
+  let characters = [];
+  if (req.user.username) {
+    const user = await User.find({username: req.user.username}).exec();
+    console.log('USER!!', user);
+    
+    characters = user[0].characters;
+  }
+
+  res.render('index', {
+    username: req.user?.username,
+    characters: characters
+  });
 });
 
 router.get('/poll', (req, res) => {
@@ -43,7 +56,6 @@ router.get('/poll', (req, res) => {
 });
 
 router.post('/poll', async (req, res) => {
-  // connect to db
 
   // parse poll response
   const body = req.body;
@@ -67,6 +79,70 @@ router.post('/poll', async (req, res) => {
 
 router.get('/poll-submitted', (req, res) => {
   res.render('submittedForm');
+});
+
+router.get('/track-characters', (req, res) => {
+  const characters = [
+    "Albedo",
+    "Amber",
+    "Barbara",
+    "Bennett",
+    "Diluc",
+    "Diona",
+    "Eula",
+    "Fischl",
+    "Jean",
+    "Kaeya",
+    "Klee",
+    "Lisa",
+    "Mona",
+    "Noelle",
+    "Razor",
+    "Rosaria",
+    "Sucrose",
+    "Venti",
+    "Beidou",
+    "Chongyun",
+    "Ganyu",
+    "Hu Tao",
+    "Keqing",
+    "Ningguang",
+    "Qiqi",
+    "Shenhe",
+    "Xiangling",
+    "Xiao",
+    "Xingqiu",
+    "Xinyan",
+    "Yanfei",
+    "Yun Jin",
+    "Zhongli",
+    "Arataki Itto",
+    "Gorou",
+    "Kaedehara Kazuha",
+    "Kamisato Ayaka",
+    "Kamisato Ayato",
+    "Kujou Sara",
+    "Raiden Shogun",
+    "Sangonomiya Kokomi",
+    "Sayu",
+    "Thoma",
+    "Yae Miko",
+    "Yoimiya"
+  ];
+
+  res.render('trackCharacters', {characters});
+});
+
+
+router.post('/track-characters', async (req, res) => {
+  // get characters from form
+  const characters = req.body.character;
+  console.log(characters);
+
+  // get user from database and update characters
+  await User.findOneAndUpdate({username: req.user.username}, {characters: characters});
+
+  res.redirect('/');
 });
 
 module.exports = router;

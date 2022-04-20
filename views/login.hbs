@@ -1,6 +1,13 @@
-<h1>Sign In</h1>
-<a class="button google" href="/auth/google">Sign in with Google</a>
-
-{{#if messages.error}}
-<p class="error-text">{{messages.error}}</p>
-{{/if}}
+<h1>Sign in</h1>
+<form action="/user/login" method="post">
+    <section>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="username" required autofocus>
+    </section>
+    <section>
+        <label for="current-password">Password</label>
+        <input id="current-password" name="password" type="password" autocomplete="current-password" required>
+    </section>
+    <button type="submit">Sign in</button>
+</form>
+<div><a href="/">Return to Home Page</a></div>

@@ -1,14 +1,13 @@
 // requires
 require("dotenv").config(); // environment variabes
 require('./src/models/db'); // database
-require("./src/config/google"); // authentication
 
-const passport = require('passport');
+//const passport = require('passport');
 const express = require('express');
-const flash = require("express-flash");
 const session = require('express-session');
 const app = express();
 const path = require('path');
+const User = require('./src/models/user_model');
 
 // view engine setup
 app.set('view engine', 'hbs');
@@ -20,7 +19,6 @@ const sessionOptions = {
     saveUninitialized: true
   };
 app.use(session(sessionOptions));
-app.use(flash());
 
 // body parsing
 app.use(express.urlencoded({ extended: false }));
@@ -29,18 +27,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // passport setup
-app.use(passport.initialize());
-app.use(passport.session());
-require("./src/config/passport");
-require("./src/config/google");
+// app.use(passport.initialize());
+// app.use(passport.session());
+// require('./src/config/passport');
+
+// have middleware that deserializes the logged in user
+// if req.session.user exists, then create property req.user that contains the user obj
+app.use(async (req, res, next) => {
+  if(req.session.username) {
+    req.user = await User.findOne({username: req.session.username}).exec();
+  }
+  next();
+});
 
 // routers
 const baseRouter = require('./routes/index.js');
-const authRouter = require('./routes/auth.js');
 const userRouter = require('./routes/user.js');
-app.use(baseRouter);
-app.use(authRouter);
-app.use(userRouter);
+app.use('/', baseRouter);
+app.use('/user', userRouter);
 
 // make user data available to all templates
 app.use((req, res, next) => {
