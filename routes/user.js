@@ -37,7 +37,7 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res) => {
     const {username, password} = req.body;
     const existingUser = await User.findOne({username: username}).exec();
-    console.log('existingUser', existingUser);
+    //console.log('existingUser', existingUser);
     if(!existingUser) {
     const hash = await argon2.hash(password);
     await (new User({username, password: hash})).save();

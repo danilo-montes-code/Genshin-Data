@@ -13,9 +13,7 @@ router.get('/', async (req, res) =>  {
   // get characters if user is logged in
   let characters = [];
   if (req.user.username) {
-    const user = await User.find({username: req.user.username}).exec();
-    console.log('USER!!', user);
-    
+    const user = await User.find({username: req.user.username}).exec();    
     characters = user[0].characters;
   }
 
@@ -137,7 +135,6 @@ router.get('/track-characters', (req, res) => {
 router.post('/track-characters', async (req, res) => {
   // get characters from form
   const characters = req.body.character;
-  console.log(characters);
 
   // get user from database and update characters
   await User.findOneAndUpdate({username: req.user.username}, {characters: characters});
