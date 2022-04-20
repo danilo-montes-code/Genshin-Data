@@ -30,8 +30,11 @@ An Example User:
 
 ```javascript
 {
-  username: // a user's username,
-  hash: // a password hash,
+  id:
+  firstName: // a user's username,
+  lastName:
+  profilePhoto:
+  lastVisited:
   characters: // an array of references to documents containing the character info
   weapons: // an array of references to documents containing the weapon info
 }

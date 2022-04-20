@@ -1,5 +1,5 @@
 const passport = require("passport");
-const User = require("../user/user_model");
+const UserService = require('../user');
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 passport.use(
@@ -10,7 +10,25 @@ passport.use(
       clientSecret : process.env.GOOGLE_CLIENT_SECRET,
     },
     async (accessToken, refreshToken, profile, done) => {
-     console.log("user profile is: ", profile)
+      const id = profile.id;
+      const firstName = profile.name.givenName;
+      const lastName = profile.name.familyName;
+      const profilePhoto = profile.photos[0].value;
+
+      const currentUser = await UserService.getUserById({ id });
+
+      if (!currentUser) {
+        const newUser = await UserService.addGoogleUser({
+          id,
+          firstName,
+          lastName,
+          profilePhoto
+        });
+        return done(null, newUser);
+      }
+
+      currentUser.lastVisited = new Date();
+      return done(null, currentUser);
     }
   )
 );

@@ -4,12 +4,7 @@ let Schema = mongoose.Schema;
 const userSchema = new Schema({
   id: {
     type: String,
-    default: null,
-  },
-  email: {
-    type: String,
-    required: [true, "email required"],
-    unique: [true, "email already registered"],
+    unique: true
   },
   firstName: String,
   lastName: String,
@@ -20,7 +15,17 @@ const userSchema = new Schema({
 
   characters : [{type: mongoose.Schema.Types.ObjectId, ref: 'Character'}],
   weapons    : [{type: mongoose.Schema.Types.ObjectId, ref: 'Weapon'}]
+  // pollAnswers : [{type: String} : {type: mongoose.Schema.Types.ObjectId, ref: 'PollAnswer'}]
 });
+
+// const User = new mongoose.Schema({
+//   // username, password
+//   characters : [{type: mongoose.Schema.Types.ObjectId, ref: 'Character'}],
+//   weapons    : [{type: mongoose.Schema.Types.ObjectId, ref: 'Weapon'}]
+//   // poll_answers : [{type: String} : {type: mongoose.Schema.Types.ObjectId, ref: 'PollAnswer'}]
+// });
+
+
 
 const userModel = mongoose.model('User', userSchema);
 

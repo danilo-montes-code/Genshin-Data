@@ -9,7 +9,8 @@
 // passport.deserializeUser(User.deserializeUser());
 const express = require('express');
 const passport = require('passport');
-const db = require('../db');
+const db = require('../src/models/db');
+require("../src/config/google.js");
 require('dotenv').config();
 
 const router = express.Router();
@@ -33,5 +34,14 @@ router.get("/auth/google/callback",
         successFlash: "Successfully logged in!",
     })
 );
+
+router.get("/auth/logout", (req, res) => {
+    req.flash("success", "Successfully logged out");
+    req.session.destroy(function () {
+      res.clearCookie("connect.sid");
+      res.redirect("/");
+    });
+});
+
 
 module.exports = router;

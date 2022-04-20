@@ -1,2 +1,6 @@
 <h1>Sign In</h1>
-<a class="button google" href="/login/federated/google">Sign in with Google</a>
+<a class="button google" href="/auth/google">Sign in with Google</a>
+
+{{#if messages.error}}
+<p class="error-text">{{messages.error}}</p>
+{{/if}}
