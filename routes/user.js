@@ -24,10 +24,14 @@ router.post('/login', async (req, res) => {
         res.render('login', {error: 'login failed'});
     }
     } else {
-    res.render('login', {error: 'login failed'});
+      res.render('login', {error: 'login failed'});
     }
 });
 
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
 
 router.get('/register', (req, res) => {
     res.render('register');
