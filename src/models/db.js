@@ -1,6 +1,7 @@
 require('dotenv').config();
-const mongoose = require('mongoose');
 require('../models'); // generate models
+
+const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI, 
   {
