@@ -37,7 +37,6 @@ router.get('/register', (req, res) => {
     res.render('register');
 });
 
-
 router.post('/register', async (req, res) => {
     const {username, password} = req.body;
     const existingUser = await User.findOne({username: username}).exec();

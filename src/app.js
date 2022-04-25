@@ -1,23 +1,24 @@
 // requires
 require("dotenv").config(); // environment variabes
-require('./src/models/db'); // database
+require('./models/db'); // database
 
 //const passport = require('passport');
 const express = require('express');
 const session = require('express-session');
 const app = express();
 const path = require('path');
-const User = require('./src/models/user_model');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
 
 // view engine setup
 app.set('view engine', 'hbs');
 
-// sessions and flash
+// sessions
 const sessionOptions = {
   secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
-  };
+};
 app.use(session(sessionOptions));
 
 // body parsing

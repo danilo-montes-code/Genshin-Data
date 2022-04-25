@@ -1,7 +1,9 @@
-<h2>Welcome!</h2>
+<header>
+    <h1 id="homeHeader" class="wesiteHeader">Genshin Impact Data</h1>
+</header>
 
 {{#if username}}
-You are logged in as {{username}}
+
 
 <div><h3>Currently Tracked Characters:</h3></div>
 <ul>
@@ -9,5 +11,8 @@ You are logged in as {{username}}
     <li>{{this}}</li>
     {{/each}}
 </ul>
+
+
+<p id="loggedInAs">You are logged in as {{username}}</p>
 {{/if}}
 

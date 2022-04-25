@@ -12,7 +12,6 @@ body {
     align-items: center;
 }
 
-
 .navItem {
     display: block;
     text-align: center;
@@ -40,6 +39,7 @@ body {
     height: 50px;
 }
 
+
 /* website div */
 #websiteWrapper {
     display: flex;
@@ -49,10 +49,20 @@ body {
   	background-color:#eee;
 }
 
-#websiteHeader {
+.websiteHeader {
 	font-size: 40px;
     text-align: center;
 }
+
+
+/* Home Page */
+#loggedInAs {
+    text-align: right;
+}
+
+
+
+
 
 form {
 	margin-top:1em;

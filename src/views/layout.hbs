@@ -9,21 +9,18 @@
     <div id="websiteWrapper">
       <nav>
         <ul id="navBar">
-          <li class="navItem"><a href="/"><img id="websiteLogo" src="img/logo.png" alt="logo"></a></li>
+          <li class="navItem"><a href="/"><img id="websiteLogo" src="/img/logo.png" alt="logo"></a></li>
           {{#if username}}
-          <li class="navItem"><a href="/track-characters">Track</a></li>
-          {{/if}}
+          <li class="navItem"><a href="/track-characters">Tracker</a></li>
           <li class="navItem"><a href="/poll">Weekly Poll</a></li>
-          <li class="navItem"><a href="/user/login">Login</a></li>
-          <li class="navItem"><a href="/user/register">Register</a></li>
-          {{!-- {{#if username}}
+          {{/if}}
+          <li class="navItem"><a href="/user/login">Login/Register</a></li>
+          {{#if username}}
           <li class="navItem"><a href="/user/logout">Logout</a></li>
-          {{/if}} --}}
+          {{/if}}
+          <li class="navItem"><a href="/about">About</a></li>
         </ul>
       </nav>
-      <header id="websiteHeader">
-        <h1>Genshin Impact Data</h1>
-      </header>
       <div id="websiteBody">
         {{{body}}}
       </div>
