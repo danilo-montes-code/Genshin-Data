@@ -2,17 +2,20 @@
     <h1 id="homeHeader" class="wesiteHeader">Genshin Impact Data</h1>
 </header>
 
-{{#if username}}
-
-
+{{#if user}}
 <div><h3>Currently Tracked Characters:</h3></div>
 <ul>
     {{#each characters}}
-    <li>{{this}}</li>
+    <li>{{this.name}}</li>
     {{/each}}
 </ul>
 
+<div><h3>Currently Tracked Weapons:</h3></div>
+<ul>
+    {{#each weapons}}
+    <li>{{this.name}}</li>
+    {{/each}}
+</ul>
 
-<p id="loggedInAs">You are logged in as {{username}}</p>
 {{/if}}
 

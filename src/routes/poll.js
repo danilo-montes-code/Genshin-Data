@@ -1,59 +1,67 @@
-const express = require('express'), 
-      router = express.Router(),
-      //passport = require('passport'),
-      mongoose = require('mongoose'),
-      User = mongoose.model('User'),
-      PollAnswer = mongoose.model('PollAnswer'),
-      fs = require('fs');
+const express     = require('express'), 
+      router      = express.Router(),
+      mongoose    = require('mongoose'),
+      CurrentPoll = mongoose.model('CurrentPoll'),
+      Poll        = mongoose.model('Poll'),
+      PollAnswer  = mongoose.model('PollAnswer');
 
-const CURRENT_POLL_INDEX = 0;
+
+// function for verifying if the user is logged in
+const isAuthenticated = (req, res, next) => {
+  if(!req.user) {
+    res.redirect('/'); 
+  } else {
+    next();
+  }
+}
+
+router.use(isAuthenticated);
+
 
 router.get('/poll', (req, res) => {
-    fs.readFile('polls.json', async (err, data) => {
-      if (err) {
-        console.log('Could not read polls file');
-        return;
-      }
-  
-      data = JSON.parse(data);
-      currentPoll = data.polls[CURRENT_POLL_INDEX];
-  
-      // get votes from db, only including answers
-      const loggedAnswers = await PollAnswer.find({poll : CURRENT_POLL_INDEX});
-  
-      // init votes object
-      let votes = currentPoll.answers.reduce((prev, answer) => {
-        return {...prev, [answer] : 0};
-      }, {});
-  
-      // count up votes
-      loggedAnswers.forEach((answer) => {
-        votes[answer.answer] += 1;
-      });
-  
-      res.render('poll', {question: currentPoll.question,
-                          answerChoices: currentPoll.answers,
-                          votes: votes
-                        });
+
+    // get current poll title from db
+    const currentPoll = await CurrentPoll.findOne({}).exec();
+
+    // get poll from db
+    const poll = await Poll.findOne({title: currentPoll.title}).populate('userAnswers').exec();
+
+    // init votes object
+    let votes = poll.answersOptions.reduce((prev, answer) => {
+      return {...prev, [answer] : 0};
+    }, {});
+
+    // count up votes
+    poll.userAnswers.forEach(userAnswer => {
+      votes[userAnswer.answer] += 1;
     });
-  });
+
+    // res.render('poll', {question: poll.question,
+    //                     answerOptions: poll.answerOptions,
+    //                     votes: votes
+    //                   });
+    res.render('poll', {poll, votes});
+});
   
 router.post('/poll', async (req, res) => {
     // parse poll response
-    const body = req.body;
-    const answer = body.answer;
+    const {answer, title} = req.body;
 
     // find poll document
-    const poll = CURRENT_POLL_INDEX;
-    //const pollDoc = await Poll.find()
+    const poll = await Poll.findOne({title}).exec();
 
     // create poll response
     const pollResp = new PollAnswer({
-        poll   : poll, 
-        answer : answer
+        poll   : poll.id, 
+        answer : answer,
+        pollee : req.user.id
     });
 
     await pollResp.save();
+
+    // add newly created poll response to userAnswers in poll
+    poll.userAnswers.push(pollResp.id);
+    await poll.save();
 
     res.redirect('/poll-submitted');
 });

@@ -1,23 +1,28 @@
 // requires
 require("dotenv").config(); // environment variabes
-require('./models/db'); // database
+require('./config/db'); // database
+require('./config/passport_setup'); // passport
 
-//const passport = require('passport');
-const express = require('express');
-const session = require('express-session');
-const app = express();
-const path = require('path');
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const passport   = require('passport'),
+      express    = require('express'),
+      session    = require('express-session'),
+      path       = require('path'),
+      MongoStore = require('connect-mongo'),
+      app        = express(),
+      mongoose   = require('mongoose'),
+      User       = mongoose.model('User');
 
 // view engine setup
 app.set('view engine', 'hbs');
 
 // sessions
 const sessionOptions = {
-  secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false,
+    store: MongoStore.create({
+      client: mongoose.connection
+    })
 };
 app.use(session(sessionOptions));
 
@@ -28,24 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // passport setup
-// app.use(passport.initialize());
-// app.use(passport.session());
-// require('./src/config/passport');
-
-// have middleware that deserializes the logged in user
-// if req.session.user exists, then create property req.user that contains the user obj
-app.use(async (req, res, next) => {
-  if(req.session.username) {
-    req.user = await User.findOne({username: req.session.username}).exec();
-  }
-  next();
-});
-
-// routers
-const baseRouter = require('./routes/index.js');
-const userRouter = require('./routes/user.js');
-app.use('/', baseRouter);
-app.use('/user', userRouter);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // make user data available to all templates
 app.use((req, res, next) => {
@@ -53,6 +42,15 @@ app.use((req, res, next) => {
   next();
 });
 
+// routers
+const baseRouter  = require('./routes/index'),
+      userRouter  = require('./routes/user'),
+      pollRouter  = require('./routes/poll'),
+      trackRouter = require('./routes/track');
+app.use('/', baseRouter);
+app.use('/', trackRouter);
+app.use('/user', userRouter);
+app.use('/poll', pollRouter);
 
 // start server
 app.listen(process.env.PORT || 3000, 

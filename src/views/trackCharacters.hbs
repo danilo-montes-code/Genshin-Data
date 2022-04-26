@@ -1,7 +1,14 @@
-<h2>Choose what characters to track!</h2>
-<form method="POST" action="/track-characters">
+<form method="POST" action="/track">
+    <h2>Choose what characters to track!</h2>
     {{#each characters}}
-    <input type="checkbox" name="character" value="{{this}}">{{this}}</input><br>
+    <input type="checkbox" name="character" value="{{this.name}}">{{this.name}}</input><br>
     {{/each}}
+
+    <h2>Choose what weapons to track!</h2>
+    {{#each weapons}}
+    <input type="checkbox" name="weapon" value="{{this.name}}">{{this.name}}</input><br>
+    {{/each}}
+
     <input type="submit">
 </form>
+<script src="/js/main.js"></script>

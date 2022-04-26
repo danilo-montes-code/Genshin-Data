@@ -10,17 +10,20 @@
       <nav>
         <ul id="navBar">
           <li class="navItem"><a href="/"><img id="websiteLogo" src="/img/logo.png" alt="logo"></a></li>
-          {{#if username}}
-          <li class="navItem"><a href="/track-characters">Tracker</a></li>
+          {{#if user}}
+          <li class="navItem"><a href="/track">Tracker</a></li>
           <li class="navItem"><a href="/poll">Weekly Poll</a></li>
           {{/if}}
           <li class="navItem"><a href="/user/login">Login/Register</a></li>
-          {{#if username}}
+          {{#if user}}
           <li class="navItem"><a href="/user/logout">Logout</a></li>
           {{/if}}
           <li class="navItem"><a href="/about">About</a></li>
         </ul>
       </nav>
+      {{if user}}
+      <div id="welcomeUser"><p>Welcome {{user.username}}</p></div>
+      {{/if}}
       <div id="websiteBody">
         {{{body}}}
       </div>
