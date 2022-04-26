@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const argon2 = require('argon2');
 const mongoose = require('mongoose');
-const User = require('../src/models/user_model');
+const User = mongoose.model('User');
 
 // login/registration code from class
 router.get('/login', (req, res) => {
