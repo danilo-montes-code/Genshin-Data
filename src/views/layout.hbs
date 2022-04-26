@@ -21,8 +21,8 @@
           <li class="navItem"><a href="/about">About</a></li>
         </ul>
       </nav>
-      {{if user}}
-      <div id="welcomeUser"><p>Welcome {{user.username}}</p></div>
+      {{#if user}}
+      <div id="welcomeUser">Welcome {{user.username}}</div>
       {{/if}}
       <div id="websiteBody">
         {{{body}}}

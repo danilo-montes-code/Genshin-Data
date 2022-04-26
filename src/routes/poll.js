@@ -18,7 +18,7 @@ const isAuthenticated = (req, res, next) => {
 router.use(isAuthenticated);
 
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 
     // get current poll title from db
     const currentPoll = await CurrentPoll.findOne({}).exec();
@@ -70,3 +70,5 @@ router.post('/', async (req, res) => {
 router.get('/poll-submitted', (req, res) => {
     res.render('submittedForm');
 });
+
+module.exports = router;

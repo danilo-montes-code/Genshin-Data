@@ -7,12 +7,12 @@ const passport   = require('passport'),
       express    = require('express'),
       session    = require('express-session'),
       path       = require('path'),
-      MongoStore = require('connect-mongo'),
-      app        = express(),
+      MongoStore = require('connect-mongo')(session),
       mongoose   = require('mongoose'),
-      User       = mongoose.model('User');
+      app        = express();
 
 // view engine setup
+app.set('views', __dirname+'/views/');
 app.set('view engine', 'hbs');
 
 // sessions
@@ -20,8 +20,8 @@ const sessionOptions = {
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({
-      client: mongoose.connection
+    store: new MongoStore({
+      mongooseConnection : mongoose.connection,
     })
 };
 app.use(session(sessionOptions));
