@@ -1,5 +1,5 @@
 <h1>Sign in</h1>
-<form action="/user/login" method="post">
+<form method="POST" action="/user/login">
     <section>
         <label for="username">Username</label>
         <input id="username" name="username" type="text" autocomplete="username" required autofocus>
@@ -10,4 +10,5 @@
     </section>
     <input type="submit" value="Login">
 </form>
+<h2>{{error}}</h2>
 <p><em>Don't have an account? <a href="/user/register">Register here!</a></em></p>

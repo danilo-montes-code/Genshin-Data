@@ -1,17 +1,24 @@
 const express    = require('express'), 
-      router     = express.Router();
+      router     = express.Router(),
+      User       = require('mongoose').model('User');
       
 // home page
 router.get('/', async (req, res) =>  {
   // get characters if user is logged in
-  let characters = [];
+  let characters = [],
+      weapons    = [];
   
   if (req.user) {
-    //const user = await User.findById({username: req.user.id}).exec();    
-    characters = req.user.characters;
+    const user = await User.findById({username: req.user.id})
+                           .populate('characters', 'name')
+                           .populate('weapons', 'name')
+                           .exec();
+
+    characters = user.characters;
+    weapons    = user.weapons;
   }
 
-  res.render('index', {characters});
+  res.render('index', {characters, weapons});
 });
 
 // about page
