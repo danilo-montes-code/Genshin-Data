@@ -1,4 +1,4 @@
-body {
+#websiteBody {
     padding: 30px;
     font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -10,6 +10,7 @@ body {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    padding: 0px;
 }
 
 .navItem {
@@ -32,11 +33,13 @@ body {
 .navItem:first-child {
     margin-right: auto;
     cursor: pointer;
+    padding: 0px;
+    padding-left: 16px;
 }
 
 #websiteLogo {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
 }
 
 
@@ -60,6 +63,14 @@ body {
     text-align: right;
 }
 
+.dateAndTime {
+    text-align: right;
+}
+
+.dAt {
+    font-size: 1.251em;
+    font-weight: bold;
+}
 
 
 

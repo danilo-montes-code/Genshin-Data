@@ -38,11 +38,11 @@ router.post('/register', async (req, res) => {
 
 // LOGIN
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('/about');
 });
   
 router.post('/login', async (req, res) => {
-
+    
     passport.authenticate('local', (err, user) => {
         if (user) {
             req.logIn(user, (err) => {

@@ -1,14 +1,14 @@
 <form method="POST" action="/track">
-    <h2>Choose what characters to track!</h2>
+    <h1 id="chooseCharacterHeader" class="websiteHeader">Choose what characters to track!</h1>
     {{#each characters}}
     <input type="checkbox" name="character" value="{{this.name}}">{{this.name}}</input><br>
     {{/each}}
 
-    <h2>Choose what weapons to track!</h2>
+    <h1 id="chooseWeaponHeader" class="websiteHeader">Choose what weapons to track!</h1>
     {{#each weapons}}
     <input type="checkbox" name="weapon" value="{{this.name}}">{{this.name}}</input><br>
     {{/each}}
 
     <input type="submit">
 </form>
-<script src="/js/main.js"></script>
+{{!-- <script src="/js/tracker.js"></script> --}}

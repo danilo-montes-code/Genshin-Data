@@ -50,7 +50,7 @@ const baseRouter  = require('./routes/index'),
 app.use('/', baseRouter);
 app.use('/', trackRouter);
 app.use('/user', userRouter);
-app.use('/poll', pollRouter);
+app.use('/poll', pollRouter); 
 
 // start server
 app.listen(process.env.PORT || 3000, 

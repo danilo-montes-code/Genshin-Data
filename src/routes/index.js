@@ -9,6 +9,7 @@ router.get('/', async (req, res) =>  {
       weapons    = [];
   
   if (req.user) {
+    console.log('user logged in');
     const user = await User.findById({username: req.user.id})
                            .populate('characters', 'name')
                            .populate('weapons', 'name')
@@ -18,7 +19,11 @@ router.get('/', async (req, res) =>  {
     weapons    = user.weapons;
   }
 
-  res.render('index', {characters, weapons});
+  
+  const dayReset = new Date(),
+        weeklyReset = 0;
+
+  res.render('index', {characters, weapons, dayReset, weeklyReset});
 });
 
 // about page
