@@ -15,10 +15,7 @@ const isAuthenticated = (req, res, next) => {
   }
 }
 
-router.use(isAuthenticated);
-
-
-router.get('/', async (req, res) => {
+router.get('/', isAuthenticated, async (req, res) => {
 
     // get current poll title from db
     const currentPoll = await CurrentPoll.findOne({}).exec();
@@ -43,7 +40,7 @@ router.get('/', async (req, res) => {
     res.render('poll', {poll, votes});
 });
   
-router.post('/', async (req, res) => {
+router.post('/', isAuthenticated, async (req, res) => {
     // parse poll response
     const {answer, title} = req.body;
 

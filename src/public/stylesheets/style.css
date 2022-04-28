@@ -57,6 +57,11 @@
     text-align: center;
 }
 
+#websiteBodyContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* Home Page */
 #welcomeUser {
@@ -68,21 +73,41 @@
 }
 
 .dAt {
-    font-size: 1.251em;
+    font-size: 1.25em;
     font-weight: bold;
 }
 
-
-
-
-form {
-	margin-top:1em;
-	margin-bottom:1em;
+#resetDay > p, #resetWeek > p {
+    display: inline;
 }
 
 
-input[type='checkbox'] {
-	margin-right: 1em;
+/* Login/Register */
+
+.logRegForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logRegForm > input[type=submit] {
+    flex-grow: 0;
+}
+
+
+
+
+/* About */
+.aboutText {
+    text-align: center;
+}
+
+
+
+/* General */
+form {
+    margin-top:1em;
+    margin-bottom:1em;
 }
 
 input[type=submit] {
@@ -90,10 +115,6 @@ input[type=submit] {
 	background:#ccc; 
 	border:0 none;
 	cursor:pointer;
-	font-size:1em;
-}
-
-input {
 	font-size:1em;
 }
 

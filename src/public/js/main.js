@@ -11,12 +11,18 @@ function main () {
 
     // change content to new day if it ever crosses into next day
     if (dateSpan.textContent !== day) {
-        dateSpan.textContent = day
+        dateSpan.textContent = day;
     }
     
+    // lower the time until
     const [timeUntilD, timeUntilW] = getResets(date);
-    daySpan.textContent  = timeUntilD;
-    weekSpan.textContent = timeUntilW;
+    daySpan.textContent  = timeUntilD.dhours + 'h ' + 
+                           timeUntilD.dminutes + 'm ' + 
+                           timeUntilD.dseconds + 's';
+    weekSpan.textContent = timeUntilW.wdays + 'd ' + 
+                           timeUntilW.whours + 'h ' +
+                           timeUntilW.wminutes + 'm'
+                           timeUntilW.wseconds + 's';
 }
 
 function dayOfWeek(day) {
@@ -27,16 +33,4 @@ function dayOfWeek(day) {
            day === 4 ? 'Thursday' :
            day === 5 ? 'Friday' :
                        'Saturday';
-}
-
-// gets the 
-function getResets(currentDate) {
-    let tomorrow = new Date(),
-        nextWeek = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1),
-    nextWeek.setDate()
-
-    tomorrow = currentDate()
-
-    return [tomorrow, nextWeek];
 }

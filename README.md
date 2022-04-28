@@ -156,8 +156,8 @@ An Example Domain document:
 * (5 points) Integrate user authentication
     * I'm going to be using `passport.js` for user authentication
     * `passport` seems to be a relatively simple to use library, and should allow me to implement user authentication without too much trouble
-* (1 point) Get local time
-    * I will use the local time to show the default values on the home page
+* (2 point) Countdown timers
+    * I will use data-fns to get time values to 
     * It will automatically handle time zone differences
     * Might be something already native to js
 * (2 points) Flexbox
@@ -165,8 +165,6 @@ An Example Domain document:
     * Flexbox is more flexible than native css stylings
 * (3 points) MongoDB + Heroku Deployment
     * I am using these to make my web app available outside of the class
-* (1 point) mongoose-slugger-plugin
-    * Replacement for mongoose-url-slugs given vulnerability in dependency
 
 11 points total out of 8 required points
 

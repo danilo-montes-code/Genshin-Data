@@ -1,10 +1,16 @@
 <header>
 	<h1 id="registerHeader" class="websiteHeader">Register</h1>
 </header>
-<form method="POST" action="/user/register">
-		<div>Username: <input type="text" name="username" value="">	</div>
-		<div>Password: <input type="password" name="password" value="">	</div>
-		<input type="submit" value="Register">	
+<form id="registerForm" class="logRegForm" method="POST" action="/user/register">
+	<section>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="username" required autofocus>
+    </section>
+	<section>
+        <label for="current-password">Password</label>
+        <input id="current-password" name="password" type="password" autocomplete="current-password" required>
+    </section>
+	<input type="submit" value="Register">	
 </form>
-<div>Already have an account? <a href="/user/login">Login</a></div>
 <h2>{{error}}</h2>
+<div><em>Already have an account? <a href="/user/login">Login</a></em></div>

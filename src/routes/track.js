@@ -14,20 +14,17 @@ const isAuthenticated = (req, res, next) => {
   }
 }
 
-router.use(isAuthenticated);
-
-
 // character tracker
-router.get('/track', async (req, res) => {
+router.get('/track', isAuthenticated, async (req, res) => {
 
     const characters = await Character.find({}).exec(),
           weapons    = await Weapon.find({}).exec();
     
     res.render('trackCharacters', {characters, weapons});
 });
+
   
-  
-router.post('/track', async (req, res) => {
+router.post('/track', isAuthenticated, async (req, res) => {
     // get characters from form
     const charactersForm = req.body.character,
           weaponsForm    = req.body.weapon;

@@ -47,6 +47,7 @@ const baseRouter  = require('./routes/index'),
       userRouter  = require('./routes/user'),
       pollRouter  = require('./routes/poll'),
       trackRouter = require('./routes/track');
+
 app.use('/', baseRouter);
 app.use('/', trackRouter);
 app.use('/user', userRouter);
