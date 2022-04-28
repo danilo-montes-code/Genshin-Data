@@ -25,20 +25,33 @@
 </div>
 
 {{#if user}}
-<div id="showTracked">
-    <h3 class="trackedDisplay">Currently Tracked Characters:</h3>
+<div id="showDomains" class="showTrackedContent">
+    <h3 class="trackedDisplay">Relevant Domains:</h3>
     <ul>
-        {{#each characters}}
+        {{#each domains}}
         <li>{{this.name}}</li>
         {{/each}}
     </ul>
+</div>
 
-    <h3 class="trackedDisplay">Currently Tracked Weapons:</h3>
-    <ul>
-        {{#each weapons}}
-        <li>{{this.name}}</li>
-        {{/each}}
-    </ul>
+<div id="showTracked">
+    <div id="showCharacters" class="showTrackedContent">
+        <h3 class="trackedDisplay">Currently Tracked Characters:</h3>
+        <ul>
+            {{#each characters}}
+            <li>{{this.name}}</li>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div id="showWeapons" class="showTrackedContent">
+        <h3 class="trackedDisplay">Currently Tracked Weapons:</h3>
+        <ul>
+            {{#each weapons}}
+            <li>{{this.name}}</li>
+            {{/each}}
+        </ul>
+    </div>
 </div>
 {{/if}}
 

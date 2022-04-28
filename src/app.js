@@ -46,12 +46,14 @@ app.use((req, res, next) => {
 const baseRouter  = require('./routes/index'),
       userRouter  = require('./routes/user'),
       pollRouter  = require('./routes/poll'),
-      trackRouter = require('./routes/track');
+      trackRouter = require('./routes/track')
+      apiRouter   = require('./routes/api');
 
 app.use('/', baseRouter);
 app.use('/', trackRouter);
 app.use('/user', userRouter);
 app.use('/poll', pollRouter); 
+app.use('/api', apiRouter);
 
 // start server
 app.listen(process.env.PORT || 3000, 

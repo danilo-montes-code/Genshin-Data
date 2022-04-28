@@ -1,3 +1,5 @@
+const { populate } = require('../models/character_model');
+
 const express    = require('express'),
       fns        = require('date-fns'),
       tz         = require('date-fns-tz'), 
@@ -8,16 +10,49 @@ const express    = require('express'),
 router.get('/', async (req, res) =>  {
   // get characters if user is logged in
   let characters = [],
-      weapons    = [];
+      weapons    = [],
+      domains    = [];
   
   if (req.user) {
-    const user = await User.findById(req.user.id)
-                           .populate('characters', 'name')
-                           .populate('weapons', 'name')
-                           .exec();
+    const user = await  User.findById(req.user.id)
+                            .populate(
+                                [
+                                    {
+                                        path: 'characters',
+                                        populate : [
+                                            {
+                                                path: 'talent_material',
+                                                populate : {path: 'domain'}
+                                            },
+                                            {
+                                                path: 'weekly_material',
+                                                populate : {path: 'domain'}
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        path: 'weapons',
+                                        populate :  {
+                                                        path: 'ascension_material',
+                                                        populate : {path: 'domain'}
+                                                    }
+                                    }
+                                ]).exec();
 
     characters = user.characters;
-    weapons    = user.weapons;
+    weapons = user.weapons;
+    console.log(characters);
+    console.log(weapons);
+
+    // let charDoms = characters.reduce((prev, curr) => {
+
+    // }, []);
+
+    // let weapDoms = weapons.reduce((prev, curr) => {
+
+    // }, []);
+    
+    // domains = charDoms.concat(weapDoms);
   }
 
   // getting current day and time until resets
