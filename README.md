@@ -5,26 +5,28 @@
 
 In the game Genshin Impact, there are available areas in the game that are only available on certain days. Checking for which of these areas are available on what days can get tedious, as every character and weapon need different materials, and you may end up forgetting what each one needs. The goal of this site is to eliminate the need to memorize what days and what materials are needed for you to level up your characters and weapons.
 
-Genshin Impact Daily Info is a web app that will allow users to view what materials are available on a given day (the current day, by default). Registered users can also indicate which characters and weapons they want to focus on, so those will appear clearly on the page.
+Genshin Impact Daily Info is a web app that will allow users to view what materials are available on the day the user accesses the site. Users must register an account, and then can indicate which characters and weapons they want to focus on, so those will appear clearly on the page.
 
 ## Data Model
 
-The application will store Users, Characters, Weapons, Materials, and Domains
+The application will store Users, Characters, Weapons, Materials, Domains, Polls, and PollAnswers
 
-* each list will store information about a single character or weapon
-* users can have multiple characters and weapons (via references)
+* users can have multiple characters, weapons, and poll answers (via references)
 * characters and weapons contain materials (via references)
 * materials contain domains (via references)
+* polls contain poll answers (via references)
+* poll answers contain the poll to which they are answers to and the users that answered them (via references)
 
 An Example User:
 
 ```javascript
 {
   username: // username
-  password: // hashed password
-  lastVisited: // time when the user last visited the site
+  salt: // password salt
+  hash: // password hash
   characters: // an array of references to documents containing the character info
   weapons: // an array of references to documents containing the weapon info
+  pollAnswers: // an array of references to documents containing the user's poll answers
 }
 ```
 
@@ -35,8 +37,8 @@ An Example Character document:
   name: "Beidou",
   region: "Liyue",
   vision: "Electro",
-  talent-material: "Gold",
-  weekly-material: "Dvalin's Sigh"
+  talent_material: ObjectId('...'), // object ID of talent material
+  weekly_material: ObjectId('...')  // object ID of weekly material
 }
 ```
 
@@ -47,10 +49,7 @@ An Example Weapon document:
   name: "Sacrificial Greatsword",
   class: "Claymore",
   rarity: 4,
-  stats: {base_atk: "565", 
-          second_stat: "Energy Recharge", 
-          second_stat_number: "30.6%"},
-  ascension_material : "Boreal Wolf Teeth"
+  ascension_material : ObjectId('...') // object ID of ascension_material
 }
 ```
 
@@ -59,8 +58,8 @@ An Example Material document:
 ```javascript
 {
   name: "Boreal Wolf Teeth",
-  days_of_week: "Tu/Fr",
-  domain: "Cecilia Garden"
+  days_of_week: "Tuesday Friday",
+  domain: ObjectId('...') // object ID of domain
 }
 ```
 
@@ -70,62 +69,23 @@ An Example Domain document:
 {
   name: "Stormterror's Lair"
   region: "Mondstadt", 
-  weekly_boss: "Dvalin"
+  weekly_boss: "Dvalin",
+  type: "Trounce"
 }
 ```
 
 
-## [Link to Commented First Draft Schema](db.js) 
+## [Link to Commented First Draft Schema](src/models/user_model.js) 
 
 ## Wireframes
 
-/ - home page of site
-
-![home page](documentation/wireframes/home.png)
-
-/ - home page of site if user is logged in
-
-![home page with login](documentation/wireframes/home-with-login.png)
-
 /user/login - login page
 
-![login page](documentation/wireframes/login.png)
+![login page](documentation/wireframes/user_login.png)
 
 /user/register - registration page
 
-![registration page](documentation/wireframes/register.png)
-
-/characters - list of all characters
-
-![characters page](documentation/wireframes/characters.png)
-
-/characters/slug - information about a specific character
-
-![character page](documentation/wireframes/characters_slug.png)
-
-/weapons - list of all weapons
-
-![weapons page](documentation/wireframes/weapons.png)
-
-/weapons/slug - information about a specific weapon
-
-![weapon page](documentation/wireframes/weapons_slug.png)
-
-/materials - list of all materials
-
-![materials page](documentation/wireframes/materials.png)
-
-/materials/slug - information about a specific material
-
-![material page](documentation/wireframes/materials_slug.png)
-
-/domains - list of all domains
-
-![domains page](documentation/wireframes/domains.png)
-
-/domains/slug - information about a specific domain
-
-![domain page](documentation/wireframes/domains_slug.png)
+![registration page](documentation/wireframes/user_register.png)
 
 ## Site map
 
@@ -134,19 +94,19 @@ An Example Domain document:
 ## User Stories or Use Cases
 
 1. as a non-registered user, I can register a new account with the site
-2. as a non-registered user, I can view the available talent and weapon level up material for any given day
-3. as a non-registered user, I can look up general information about characters, weapons, materials, and domains
-4. as a user, I can log in to the site
-5. as a user, I can mark characters and weapons to track, so that they show up first on the home page
-6. as a user, I can view all of my tracked characters and weapons
-7. as a user, I can add and remove weapons and characters to be tracked
+2. as a non-registered user, I can view the about tab, which informs me on how the website works
+3. as a registered user, I can log in to the site
+4. as a registered user, I can mark characters and weapons to track, so that they show up first on the home page
+5. as a registered user, I can view all of my tracked characters and weapons
+6. as a registered user, I can add and remove weapons and characters to be tracked
+7. as a registered user, I can submit an answer to the weekly poll
 
 ## Research Topics
 
 * (5 points) Integrate user authentication
     * I'm going to be using `passport.js` for user authentication
-    * `passport` seems to be a relatively simple to use library, and should allow me to implement user authentication without too much trouble
-* (2 point) Countdown timers
+    * It allows me to easily implement user login and logout, which is essential for the site
+* (2 points) Countdown timers
     * I will use date-fns to get time values to create the countdown timers shown on the home page
     * It will automatically handle time zone differences
 * (2 points) Flexbox
@@ -155,13 +115,14 @@ An Example Domain document:
 * (3 points) MongoDB + Heroku Deployment
     * I am using these to make my web app available outside of the class
 
-11 points total out of 8 required points
+12 points total out of 8 required points
 
 
-## [Link to Initial Main Project File](app.js) 
+## [Link to Initial Main Project File](src/app.js) 
 
 ## Annotations / References Used
 
-1. [passport.js sign in tutorial](https://medium.com/swlh/set-up-an-express-js-app-with-passport-js-and-mongodb-for-password-authentication-6ea05d95335c)
-2. [flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) - [used in css file](/public/stylesheets/style.css)
-3. [date-fns](https://date-fns.org/)
+1. [passport.js](https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-danilo-montes/tree/7230f041144c1ad6c4bbb0781ea62b11124e3168) - I based my login on the one used in the initial commit of the repository (sample list site)
+2. [date-fns](https://date-fns.org/)
+3. [flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) - [used in css file](/public/stylesheets/style.css)
+4. [MongoBD + Heroku Deployment](https://www.mongodb.com/developer/how-to/use-atlas-on-heroku/)

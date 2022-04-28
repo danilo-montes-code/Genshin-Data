@@ -5,6 +5,7 @@ const express  = require('express'),
       User     = mongoose.model('User');
 
 // login and register from initial template
+// https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-danilo-montes/tree/7230f041144c1ad6c4bbb0781ea62b11124e3168
 
 // REGISTER
 router.get('/register', (req, res) => {
