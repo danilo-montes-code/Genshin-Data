@@ -9,10 +9,9 @@ function main () {
 
     trackedCharacters = trackedCharacters.value.split(',');
     trackedWeapons = trackedWeapons.value.split(',');
-    
+
     Array.prototype.forEach.call(allCharacters, (ele) => {
-        if (trackedCharacters.includes(ele.value)) {
-            
+        if (trackedCharacters.includes(ele.value)) {       
             ele.setAttribute('checked', 'checked');
         }
     });
