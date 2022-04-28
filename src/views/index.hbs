@@ -2,26 +2,27 @@
     <h1 id="homeHeader" class="websiteHeader">Genshin Impact Data</h1>
 </header>
 
-<div class="dateAndTime">Today is: 
-    <span id="currentDay" class="dAt">{{day}}</span></div>
+<div id="countdowns">
+    <div class="dateAndTime">Today is: 
+        <span id="currentDay" class="dAt">{{day}}</span></div>
 
-<div class="dateAndTime">Daily reset in: 
-    <span id="resetDay" class="dAt">
-        <p id="dhours">{{dhours}}h</p>
-        <p id="dminutes">{{dminutes}}m</p>
-        <p id="dseconds">{{dseconds}}s</p>
-    </span>
+    <div class="dateAndTime">Daily reset in: 
+        <span id="resetDay" class="dAt">
+            <p id="dhours">{{dhours}}h</p>
+            <p id="dminutes">{{dminutes}}m</p>
+            <p id="dseconds">{{dseconds}}s</p>
+        </span>
+    </div>
+
+    <div class="dateAndTime">Weekly reset in: 
+        <span id="resetWeek" class="dAt">
+            <p id="wdays">{{wdays}}d</p>
+            <p id="whours">{{dhours}}h</p>
+            <p id="wminutes">{{dminutes}}m</p>
+            <p id="wseconds">{{dseconds}}s</p>
+        </span>
+    </div>
 </div>
-
-<div class="dateAndTime">Weekly reset in: 
-    <span id="resetWeek" class="dAt">
-        <p id="wdays">{{wdays}}d</p>
-        <p id="whours">{{dhours}}h</p>
-        <p id="wminutes">{{dminutes}}m</p>
-        <p id="wseconds">{{dseconds}}s</p>
-    </span>
-</div>
-
 
 {{#if user}}
 <div id="showTracked">

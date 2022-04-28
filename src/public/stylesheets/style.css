@@ -68,6 +68,13 @@
     text-align: right;
 }
 
+#countdowns {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: flex-end;
+}
+
 .dateAndTime {
     text-align: right;
 }
