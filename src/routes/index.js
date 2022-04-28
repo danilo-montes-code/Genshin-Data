@@ -1,8 +1,5 @@
-const { populate } = require('../models/character_model');
-
 const express    = require('express'),
       fns        = require('date-fns'),
-      tz         = require('date-fns-tz'), 
       router     = express.Router(),
       User       = require('mongoose').model('User');
       
@@ -43,22 +40,48 @@ router.get('/', async (req, res) =>  {
 
     characters = user.characters;
     weapons = user.weapons;
-    // console.log(characters);
-    // console.log(weapons);
-    // console.log(characters[0].talent_material.domain);
+
+    // only show available domains
+    const todayWithOffset = dayOfWeek(fns.subHours(fns.startOfDay(new Date()), getRegionOffset(Intl.DateTimeFormat().resolvedOptions().timeZone)).getDay());
 
     forgery = weapons.reduce((prev, weapon) => {
-        prev.push(weapon.ascension_material.domain);
+        const material      = weapon.ascension_material,
+              availableDays = material.days_of_week.split(' '),
+              domain        = material.domain;
+
+        if (todayWithOffset === 'Sunday') {
+            if (!prev.includes(domain))
+            prev.push(domain);
+        }
+        else if (availableDays.includes(todayWithOffset)) {
+            if (!prev.includes(domain))
+            prev.push(domain);
+        }
+        
         return prev;
     }, []);
 
     mastery = characters.reduce((prev, character) => {
-        prev.push(character.talent_material.domain);
+        const material      = character.talent_material,
+              availableDays = material.days_of_week.split(' '),
+              domain        = material.domain;
+
+        if (todayWithOffset === 'Sunday') {
+            if (!prev.includes(domain))
+            prev.push(domain);
+        }
+        else if (availableDays.includes(todayWithOffset)) {
+            if (!prev.includes(domain))
+            prev.push(domain);
+        }
+
         return prev;
     }, []);
 
     trounce = characters.reduce((prev, character) => {
-        prev.push(character.weekly_material.domain);
+        const domain = character.weekly_material.domain;
+        if (!prev.includes(domain))
+            prev.push(domain);
         return prev;
     }, []);
   }

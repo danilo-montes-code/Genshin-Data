@@ -101,20 +101,34 @@
 
 #domainDisplay {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .showTrackedContent {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    margin: 10px;
 }
 
 .trackedDisplay {
     text-align: center;
+    font-size: 1.25em;
 }
 
+.domainCol {
+    margin: 10px;
+    text-align: center;
+}
+
+.domainCol > p {
+    font-weight: bold;
+}
+
+.domainList {
+    white-space: pre-wrap;
+    text-align: center;
+}
 
 
 /* Login/Register */

@@ -26,26 +26,32 @@
 
 {{#if user}}
 <div id="showDomains">
-    <h3 class="trackedDisplay">Relevant Domains</h3>
+    <h3 class="trackedDisplay">Available Domains</h3>
     <div id="domainDisplay">
-        <ul id="forgeryDoms" class="showTrackedContent">
+        <div class="domainCol">
             <p>Domains of Forgery</p>
-            {{#each forgery}}
-            <li>{{this.name}} - {{this.region}}</li>
-            {{/each}}
-        </ul>
-        <ul id="masteryDoms" class="showTrackedContent">
+            <ul id="forgeryDoms" class="domainList removeBullets">
+                {{#each forgery}}
+                <li>{{this.name}} ({{this.region}})</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="domainCol">
             <p>Domains of Mastery</p>
-            {{#each mastery}}
-            <li>{{this.name}} - {{this.region}}</li>
-            {{/each}}
-        </ul>
-        <ul id="trounceDoms" class="showTrackedContent">
+            <ul id="masteryDoms" class="domainList removeBullets">
+                {{#each mastery}}
+                <li>{{this.name}} ({{this.region}})</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="domainCol">
             <p>Trounce Domains</p>
-            {{#each trounce}}
-            <li>{{this.weekly_boss}} : {{this.name}} - {{this.region}}</li>
-            {{/each}}
-        </ul>
+            <ul id="trounceDoms" class="domainList removeBullets">
+                {{#each trounce}}
+                <li>{{this.name}} ({{this.region}})</li>
+                {{/each}}
+            </ul>
+        </div>
     </div>
 </div>
 

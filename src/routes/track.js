@@ -18,9 +18,32 @@ const isAuthenticated = (req, res, next) => {
 router.get('/track', isAuthenticated, async (req, res) => {
 
     const characters = await Character.find({}).exec(),
-          weapons    = await Weapon.find({}).exec();
-    
-    res.render('trackCharacters', {characters, weapons});
+          weapons    = await Weapon.find({}).exec(),
+          user       = await User.findOne({username: req.user.username}).exec();
+
+    // gets user characters
+    let trackedCharacters = characters.filter(character => {
+      return user.characters.includes(character.id);
+    });
+
+    // put into string
+    trackedCharacters = trackedCharacters.reduce((fullString, character) => {
+      return fullString += character.name + ',';
+    }, '');
+    trackedCharacters = trackedCharacters.slice(0, -1);
+
+    // get user weapons
+    let trackedWeapons = weapons.filter(weapon => {
+      return user.weapons.includes(weapon.id);
+    });
+
+    // put into string
+    trackedWeapons = trackedWeapons.reduce((fullString, weapon) => {
+      return fullString += weapon.name + ',';
+    }, '');
+    trackedWeapons = trackedWeapons.slice(0, -1);
+
+    res.render('trackCharacters', {characters, weapons, trackedCharacters, trackedWeapons});
 });
 
   

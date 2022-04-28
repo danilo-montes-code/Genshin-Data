@@ -34,10 +34,6 @@ router.get('/', isAuthenticated, async (req, res) => {
       votes[userAnswer.answer] += 1;
     });
 
-    // res.render('poll', {question: poll.question,
-    //                     answerOptions: poll.answerOptions,
-    //                     votes: votes
-    //                   });
     res.render('poll', {poll, votes});
 });
   
