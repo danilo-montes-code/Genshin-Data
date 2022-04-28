@@ -1,14 +1,4 @@
 <!-- ![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title") -->
-<!-- 
-git add .
-git commit -m <message>
-
-GitHub
-git push
-
-Heroku
-git push heroku master
--->
 # Genshin Impact Daily Info
 
 ## Overview
@@ -157,9 +147,8 @@ An Example Domain document:
     * I'm going to be using `passport.js` for user authentication
     * `passport` seems to be a relatively simple to use library, and should allow me to implement user authentication without too much trouble
 * (2 point) Countdown timers
-    * I will use data-fns to get time values to 
+    * I will use date-fns to get time values to create the countdown timers shown on the home page
     * It will automatically handle time zone differences
-    * Might be something already native to js
 * (2 points) Flexbox
     * I am aiming to use flexbox to style my pages
     * Flexbox is more flexible than native css stylings
@@ -173,5 +162,6 @@ An Example Domain document:
 
 ## Annotations / References Used
 
-1. [passport.js sign in tutorial](https://medium.com/swlh/set-up-an-express-js-app-with-passport-js-and-mongodb-for-password-authentication-6ea05d95335c) - still working on implementation
+1. [passport.js sign in tutorial](https://medium.com/swlh/set-up-an-express-js-app-with-passport-js-and-mongodb-for-password-authentication-6ea05d95335c)
 2. [flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) - [used in css file](/public/stylesheets/style.css)
+3. [date-fns](https://date-fns.org/)

@@ -23,16 +23,6 @@ router.post('/register', async (req, res) => {
           });
         }
     });
-
-    // const existingUser = await User.findOne({username: username}).exec();
-    // //console.log('existingUser', existingUser);
-    // if(!existingUser) {
-    // const hash = await argon2.hash(password);
-    // await (new User({username, password: hash})).save();
-    // res.redirect('/');
-    // } else {
-    // res.render('register', {error: 'could not register'});
-    // }
 });
 
 
@@ -41,7 +31,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
   
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
     
     passport.authenticate('local', (err, user) => {
         if (user) {
@@ -52,23 +42,6 @@ router.post('/login', async (req, res) => {
             res.render('login', {error: 'Your username or password is incorrect.'})
         }
     })(req, res, next);
-
-    // const {username, password} = req.body;
-    // const user = await User.findOne({username: username}).exec();
-    // // console.log('LOGIN: existingUser', user);
-    // if(user) {
-    // // user.passwordr is from db, password is incoming pw
-    // if(await argon2.verify(user.password, password)) {
-    //     // this creates our "authenticated" session
-    //     // "serializing" the user
-    //     req.session.username = user.username;
-    //     res.redirect('/');
-    // } else {
-    //     res.render('login', {error: 'login failed'});
-    // }
-    // } else {
-    //   res.render('login', {error: 'login failed'});
-    // }
 });
 
 

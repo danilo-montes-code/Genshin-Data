@@ -81,6 +81,11 @@
     display: inline;
 }
 
+#showTracked {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 
 /* Login/Register */
 

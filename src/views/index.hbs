@@ -24,20 +24,21 @@
 
 
 {{#if user}}
-<div><h3>Currently Tracked Characters:</h3></div>
-<ul>
-    {{#each characters}}
-    <li>{{this.name}}</li>
-    {{/each}}
-</ul>
+<div id="showTracked">
+    <h3 class="trackedDisplay">Currently Tracked Characters:</h3>
+    <ul>
+        {{#each characters}}
+        <li>{{this.name}}</li>
+        {{/each}}
+    </ul>
 
-<div><h3>Currently Tracked Weapons:</h3></div>
-<ul>
-    {{#each weapons}}
-    <li>{{this.name}}</li>
-    {{/each}}
-</ul>
-
+    <h3 class="trackedDisplay">Currently Tracked Weapons:</h3>
+    <ul>
+        {{#each weapons}}
+        <li>{{this.name}}</li>
+        {{/each}}
+    </ul>
+</div>
 {{/if}}
 
 {{!-- <script src="/js/main.js"></script> --}}

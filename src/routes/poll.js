@@ -3,7 +3,8 @@ const express     = require('express'),
       mongoose    = require('mongoose'),
       CurrentPoll = mongoose.model('CurrentPoll'),
       Poll        = mongoose.model('Poll'),
-      PollAnswer  = mongoose.model('PollAnswer');
+      PollAnswer  = mongoose.model('PollAnswer'),
+      User        = mongoose.model('User');
 
 
 // function for verifying if the user is logged in
@@ -24,7 +25,7 @@ router.get('/', isAuthenticated, async (req, res) => {
     const poll = await Poll.findOne({title: currentPoll.title}).populate('userAnswers').exec();
 
     // init votes object
-    let votes = poll.answersOptions.reduce((prev, answer) => {
+    let votes = poll.answerOptions.reduce((prev, answer) => {
       return {...prev, [answer] : 0};
     }, {});
 
@@ -60,11 +61,16 @@ router.post('/', isAuthenticated, async (req, res) => {
     poll.userAnswers.push(pollResp.id);
     await poll.save();
 
-    res.redirect('/poll-submitted');
+    // add poll answer to user's list of poll answers
+    const user = await User.findById(req.user.id).exec();
+    user.pollAnswers.push(pollResp.id);
+    await user.save();
+    
+    res.redirect('/poll/submitted');
 });
 
 
-router.get('/poll-submitted', (req, res) => {
+router.get('/submitted', (req, res) => {
     res.render('submittedForm');
 });
 

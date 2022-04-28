@@ -1,5 +1,6 @@
 const express    = require('express'),
-      fns        = require('date-fns'), 
+      fns        = require('date-fns'),
+      tz         = require('date-fns-tz'), 
       router     = express.Router(),
       User       = require('mongoose').model('User');
       
@@ -10,8 +11,7 @@ router.get('/', async (req, res) =>  {
       weapons    = [];
   
   if (req.user) {
-    console.log('user logged in');
-    const user = await User.findById({username: req.user.id})
+    const user = await User.findById(req.user.id)
                            .populate('characters', 'name')
                            .populate('weapons', 'name')
                            .exec();
@@ -24,9 +24,14 @@ router.get('/', async (req, res) =>  {
   const today = new Date(),
         day   = dayOfWeek(today.getDay());
         
-  const tomorrow = fns.startOfTomorrow(today),
-        nextWeek = fns.startOfDay(fns.nextMonday(today));
-  
+  // despite the variable names, these refer to when the reset occurs, which is based on time zones:
+  //    US     : GMT-5
+  //    Europe : GMT+1
+  //    Asia   : GTM+8
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone,
+        tomorrow = fns.subHours(fns.startOfTomorrow(today), getRegionOffset(timeZone)),
+        nextWeek = fns.subHours(fns.startOfDay(fns.nextMonday(today)), getRegionOffset(timeZone));
+
   let dhours   = fns.differenceInHours(tomorrow, today) % 24,
       dminutes = fns.differenceInMinutes(tomorrow, today) % 60,
       dseconds = fns.differenceInSeconds(tomorrow, today) % 60,
@@ -37,15 +42,28 @@ router.get('/', async (req, res) =>  {
 });
 
 function dayOfWeek(day) {
-  return day === 0 ? 'Sunday' :
-         day === 1 ? 'Monday' :
-         day === 2 ? 'Tuesday' :
-         day === 3 ? 'Wednesday' :
-         day === 4 ? 'Thursday' :
-         day === 5 ? 'Friday' :
-                     'Saturday';
+    const dayNames = {
+        0 : 'Sunday',
+        1 : 'Monday', 
+        2 : 'Tuesday',
+        3 : 'Wednesday',
+        4 : 'Thursday',
+        5 : 'Friday',
+        6: 'Saturday'
+  }
+  return dayNames[day];
 }
 
+function getRegionOffset(timeZone) {
+  const region = timeZone.split('/')[0],
+        convs  = {
+          'America' : -5,
+          'Asia'    :  1,
+          'Europe'  :  8
+        };
+  return convs[region];
+
+}
 
 // about page
 router.get('/about', (req, res) => {
