@@ -11,7 +11,9 @@ router.get('/', async (req, res) =>  {
   // get characters if user is logged in
   let characters = [],
       weapons    = [],
-      domains    = [];
+      forgery    = [],
+      mastery    = [],
+      trounce    = [];
   
   if (req.user) {
     const user = await  User.findById(req.user.id)
@@ -41,18 +43,24 @@ router.get('/', async (req, res) =>  {
 
     characters = user.characters;
     weapons = user.weapons;
-    console.log(characters);
-    console.log(weapons);
+    // console.log(characters);
+    // console.log(weapons);
+    // console.log(characters[0].talent_material.domain);
 
-    // let charDoms = characters.reduce((prev, curr) => {
+    forgery = weapons.reduce((prev, weapon) => {
+        prev.push(weapon.ascension_material.domain);
+        return prev;
+    }, []);
 
-    // }, []);
+    mastery = characters.reduce((prev, character) => {
+        prev.push(character.talent_material.domain);
+        return prev;
+    }, []);
 
-    // let weapDoms = weapons.reduce((prev, curr) => {
-
-    // }, []);
-    
-    // domains = charDoms.concat(weapDoms);
+    trounce = characters.reduce((prev, character) => {
+        prev.push(character.weekly_material.domain);
+        return prev;
+    }, []);
   }
 
   // getting current day and time until resets
@@ -72,8 +80,8 @@ router.get('/', async (req, res) =>  {
       dseconds = fns.differenceInSeconds(tomorrow, today) % 60,
       wdays    = fns.differenceInDays(nextWeek, today) % 7;
 
-  res.render('index', {characters, weapons, day,
-                       dhours, dminutes, dseconds, wdays});
+  res.render('index', {characters, weapons, forgery, mastery, trounce, 
+                       day, dhours, dminutes, dseconds, wdays});
 });
 
 function dayOfWeek(day) {

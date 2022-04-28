@@ -94,11 +94,25 @@
     flex: 0 0 auto;
 }
 
+#showDomains {
+    display: flex;
+    flex-direction: column;
+}
+
+#domainDisplay {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .showTrackedContent {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
+}
+
+.trackedDisplay {
+    text-align: center;
 }
 
 
@@ -142,6 +156,12 @@ input[type=submit] {
 input[type=submit]:hover {
 	background-color: #0073AA;
 	color: white;
+}
+
+.removeBullets {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .break {

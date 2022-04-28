@@ -8,36 +8,51 @@
 
     <div class="dateAndTime">Daily reset in: 
         <span id="resetDay" class="dAt">
-            <p id="dhours">{{dhours}}h</p>
-            <p id="dminutes">{{dminutes}}m</p>
-            <p id="dseconds">{{dseconds}}s</p>
+            <p id="dhours">{{dhours}}</p>h
+            <p id="dminutes">{{dminutes}}</p>m
+            <p id="dseconds">{{dseconds}}</p>s
         </span>
     </div>
 
     <div class="dateAndTime">Weekly reset in: 
         <span id="resetWeek" class="dAt">
-            <p id="wdays">{{wdays}}d</p>
-            <p id="whours">{{dhours}}h</p>
-            <p id="wminutes">{{dminutes}}m</p>
-            <p id="wseconds">{{dseconds}}s</p>
+            <p id="wdays">{{wdays}}</p>d
+            <p id="whours">{{dhours}}</p>h
+            <p id="wminutes">{{dminutes}}</p>m
+            <p id="wseconds">{{dseconds}}</p>s
         </span>
     </div>
 </div>
 
 {{#if user}}
-<div id="showDomains" class="showTrackedContent">
-    <h3 class="trackedDisplay">Relevant Domains:</h3>
-    <ul>
-        {{#each domains}}
-        <li>{{this.name}}</li>
-        {{/each}}
-    </ul>
+<div id="showDomains">
+    <h3 class="trackedDisplay">Relevant Domains</h3>
+    <div id="domainDisplay">
+        <ul id="forgeryDoms" class="showTrackedContent">
+            <p>Domains of Forgery</p>
+            {{#each forgery}}
+            <li>{{this.name}} - {{this.region}}</li>
+            {{/each}}
+        </ul>
+        <ul id="masteryDoms" class="showTrackedContent">
+            <p>Domains of Mastery</p>
+            {{#each mastery}}
+            <li>{{this.name}} - {{this.region}}</li>
+            {{/each}}
+        </ul>
+        <ul id="trounceDoms" class="showTrackedContent">
+            <p>Trounce Domains</p>
+            {{#each trounce}}
+            <li>{{this.weekly_boss}} : {{this.name}} - {{this.region}}</li>
+            {{/each}}
+        </ul>
+    </div>
 </div>
 
 <div id="showTracked">
     <div id="showCharacters" class="showTrackedContent">
-        <h3 class="trackedDisplay">Currently Tracked Characters:</h3>
-        <ul>
+        <h3 class="trackedDisplay">Currently Tracked Characters</h3>
+        <ul class="removeBullets">
             {{#each characters}}
             <li>{{this.name}}</li>
             {{/each}}
@@ -45,8 +60,8 @@
     </div>
 
     <div id="showWeapons" class="showTrackedContent">
-        <h3 class="trackedDisplay">Currently Tracked Weapons:</h3>
-        <ul>
+        <h3 class="trackedDisplay">Currently Tracked Weapons</h3>
+        <ul class="removeBullets">
             {{#each weapons}}
             <li>{{this.name}}</li>
             {{/each}}
@@ -55,4 +70,4 @@
 </div>
 {{/if}}
 
-{{!-- <script src="/js/main.js"></script> --}}
+<script src="/js/main.js"></script>
