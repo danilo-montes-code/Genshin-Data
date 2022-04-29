@@ -129,7 +129,8 @@ function getRegionOffset(timeZone) {
         convs  = {
           'America' : -5,
           'Asia'    :  1,
-          'Europe'  :  8
+          'Europe'  :  8,
+          'UTC'     :  0
         };
   return convs[region];
 
