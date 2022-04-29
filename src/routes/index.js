@@ -98,11 +98,6 @@ router.get('/', async (req, res) =>  {
         tomorrow = fns.subHours(fns.startOfTomorrow(today), getRegionOffset(timeZone)),
         nextWeek = fns.subHours(fns.startOfDay(fns.nextMonday(today)), getRegionOffset(timeZone));
 
-  console.log(timeZone);
-  console.log(tomorrow);
-  console.log(nextWeek);
-  console.log(today.getTimezoneOffset());
-
   let dhours   = fns.differenceInHours(tomorrow, today) % 24,
       dminutes = fns.differenceInMinutes(tomorrow, today) % 60,
       dseconds = fns.differenceInSeconds(tomorrow, today) % 60,
