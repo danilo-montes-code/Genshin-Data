@@ -101,6 +101,7 @@ router.get('/', async (req, res) =>  {
   console.log(timeZone);
   console.log(tomorrow);
   console.log(nextWeek);
+  console.log(today.getTimezoneOffset());
 
   let dhours   = fns.differenceInHours(tomorrow, today) % 24,
       dminutes = fns.differenceInMinutes(tomorrow, today) % 60,
