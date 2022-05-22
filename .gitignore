@@ -3,3 +3,4 @@ node_modules
 *.swp
 /*.env
 other_files
+package-lock.json
