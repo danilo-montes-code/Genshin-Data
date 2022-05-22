@@ -1,5 +1,5 @@
 {
-  "name": "final-project-template",
+  "name": "genshin-data",
   "version": "1.0.0",
   "description": "The content below is an example project proposal / requirements document. Replace the text below the lines marked \"__TODO__\" with details specific to your project. Remove the \"TODO\" lines.",
   "main": "app.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-template.git"
+    "url": "git+https://github.com/danilo-montes/Genshin-Data.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-template/issues"
+    "url": "https://github.com/danilo-montes/Genshin-Data/issues"
   },
-  "homepage": "https://github.com/nyu-csci-ua-0467-001-002-spring-2022/final-project-template#readme",
+  "homepage": "https://github.com/danilo-montes/Genshin-Data#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
     "connect-mongo": "^3.2.0",

@@ -2,5 +2,4 @@ node_modules
 *.swo
 *.swp
 /*.env
-sample_files
-temp
+other_files
